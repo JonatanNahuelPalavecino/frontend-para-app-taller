@@ -50,7 +50,6 @@ const VerCobranzas = () => {
 
             const cob = await response.json()
 
-            console.log(cob)
             setCobranzas(cob.results)
             setTotalPages(Math.ceil(cob.total / 50)); // Divide el total por 50 para obtener el número de páginas
 

@@ -1,14 +1,12 @@
 import { Link, Typography } from '@mui/material'
 import React from 'react'
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const Cobranzas = ({cobranzas}) => {
 
     const date = new Date()
-    function preventDefault(event) {
-        event.preventDefault();
-    }
-    
+    const navigate = useNavigate()
 
     return (
         <React.Fragment>
@@ -20,7 +18,7 @@ const Cobranzas = ({cobranzas}) => {
                 {cobranzas.pendiente_arribo > 1 ? "equipos pendientes" : "equipo pendiente"} de arribo, al mes de {date && date.toLocaleString('default', { month: 'long', year: 'numeric' })}
             </Typography>
             <div>
-                <Link color="primary" href="#" onClick={preventDefault}>
+                <Link color="primary" href="#" onClick={() => navigate("/ver-cobranzas/1")}>
                 Ver Total
                 </Link>
             </div>
