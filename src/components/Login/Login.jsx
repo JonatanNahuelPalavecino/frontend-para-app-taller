@@ -46,6 +46,9 @@ export default function Login() {
 
         setLoading(true)
 
+        console.log(url);
+        
+
         try {
             const response = await fetch(`${url}/auth/login`, {
                 method: "POST",
