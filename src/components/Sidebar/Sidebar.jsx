@@ -23,7 +23,7 @@ const Sidebar = ({ open, fn }) => {
   const DrawerList = (
     <Box sx={{ width: 250, height: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }} role="presentation" onClick={fn}>
       <Box>
-        <img src={logo} className='w-[100px] h-[50px] object-cover m-4' alt="Logo" />
+        <img src={logo} className='w-[100px] h-[75px] object-cover m-4' alt="Logo" />
         <List>
           {user ? (
             options.map((option) => (

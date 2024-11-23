@@ -54,10 +54,12 @@ export default function MenuAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <img src={logo} className='w-[100px] h-[50px] object-cover mr-4'/>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              App G.O.R
-            </Typography>
+            <img src={logo} className='w-[100px] h-[75px] object-cover mr-4'/>
+            <div style={{ flexGrow: 1 }}>
+              <Typography sx={{maxWidth: "300px"}}>
+                Sistema Integral de Equipos y Movimientos
+              </Typography>
+            </div>
             {user && (
               <div className='flex items-center'>
                 <Typography component="span" mx={1}>
