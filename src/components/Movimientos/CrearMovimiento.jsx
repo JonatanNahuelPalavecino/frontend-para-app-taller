@@ -102,6 +102,7 @@ const CrearMovimiento = () => {
                 &&
                 <Items type={type}/>
             } 
+            
         </Box>
     );
 };

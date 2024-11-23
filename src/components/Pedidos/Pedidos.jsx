@@ -59,6 +59,7 @@ const Pedidos = () => {
         fetchData();
 
         if (type === "editar-pedido") {
+            
             obtenerItemsDelPedido(pedido.num_pedido)
         }
 
@@ -79,6 +80,7 @@ const Pedidos = () => {
                 {type === "editar-pedido" ? "Editar Pedido" : "Crear Pedido"}
             </Typography>
             <Divider />
+            
             <Filtros bo={bo} type={type}/>
             {
                 pedido.state
@@ -102,6 +104,7 @@ const Pedidos = () => {
                 )
                 
             }    
+            
         </Box>
     );
 }

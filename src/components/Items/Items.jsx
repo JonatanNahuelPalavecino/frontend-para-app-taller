@@ -1,11 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import { Button, Paper, TableContainer, TableRow, TextField, Typography } from '@mui/material';
+import { Button, Paper, TextField, Typography } from '@mui/material';
 import { Context } from '../Context/Context';
-import ListItems from '../ListItems/ListItems';
 import { notifyError } from '../Notificacion/Notificacion';
 import { getEquipo } from '../Peticiones/getEquipo';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -13,7 +8,9 @@ import SendIcon from '@mui/icons-material/Send';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { handleFinalizarMovimiento } from '../Peticiones/postMovimientos';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { handlePrepararPedido } from '../Peticiones/postPedidos';
+import Tabla from '../Tabla/Tabla';
 
 const Items = ({type}) => {
     const { pedido, setPedido, setLoading, setOpenDialog, setCobranzaMessage } = useContext(Context);
@@ -73,6 +70,32 @@ const Items = ({type}) => {
         setItemList(updatedItems);
     };
 
+    const headers = [
+        "N° de Serie", "Descripción", "comentarios", "Eliminar Item"
+    ];
+
+    const rows = itemList.map((item) => [item.serial_number, item.descripcion]);
+
+    const actions = [
+        (rowIndex) => (
+            <TextField
+                value={itemList[rowIndex].comentario}
+                onChange={(e) => handleCommentChange(itemList[rowIndex].serial_number, e.target.value)}
+                placeholder="Agregar comentario"
+                variant="outlined"
+                size="small"
+            />
+        ),
+        (rowIndex) => (
+            <Button 
+                variant='contained'
+                sx={{ margin: "0rem", backgroundColor: '#d32f2f', "&:hover": {backgroundColor: "#bf0707"}}}
+                startIcon={<DeleteIcon sx={{marginLeft: "12px"}}/>}
+                onClick={() => handleDeleteItem(itemList[rowIndex].serial_number)}
+            />
+        )
+    ];
+
     return (
         <>
             <Typography component="h3" variant="h6" sx={{m: 2}}>
@@ -113,32 +136,8 @@ const Items = ({type}) => {
                     Agregar
                 </LoadingButton>
 
-                <TableContainer component={Paper}>
-                    <Table size="small">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align='center'>Numero de Serie</TableCell>
-                                <TableCell align='center'>Descripción</TableCell>
-                                <TableCell align='center'>Comentarios</TableCell>
-                                <TableCell align='center'>Eliminar Item</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                itemList.map((item, index) => (
-                                    <ListItems 
-                                        key={index} 
-                                        item={item.serial_number} 
-                                        descripcion={item.descripcion} 
-                                        comentario={item.comentario}
-                                        onDelete={handleDeleteItem} 
-                                        onCommentChange={handleCommentChange}
-                                    />
-                                ))
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <Tabla headers={headers} rows={rows} actions={actions}/>
+
                 {
                     itemList.length !== 0
                     &&

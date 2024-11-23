@@ -99,54 +99,54 @@ const CrearCobranza = () => {
             </Typography>
             <Divider />
 
-            <Box
-                sx={{height: "80vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}
+            <Paper 
+                sx={{
+                    m: 2,
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap"
+                }}
             >
-
-                <Paper 
-                    sx={{
-                        m: 2,
-                        p: 2,
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexWrap: "wrap"
-                    }}
-                >
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                            disabled
-                            label="Fecha"
-                            value={fecha}
-                            onChange={(newValue) => setFecha(newValue)}
-                            sx={{
-                                margin: "1rem"
-                            }}
-                        />
-                    </LocalizationProvider>
-
-                    <TextField
-                        required
-                        id="num_serie"
-                        label="Serial Number"
-                        name="num_serie"
-                        value={serial}
-                        onChange={handleSerial}
-                        onKeyDown={handleAgregarSerial}
-                        sx={{ margin: "1rem" }}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        disabled
+                        label="Fecha"
+                        value={fecha}
+                        onChange={(newValue) => setFecha(newValue)}
+                        sx={{
+                            margin: "1rem"
+                        }}
                     />
+                </LocalizationProvider>
 
-                    <Button
-                        variant="contained"
-                        endIcon={<SendIcon />}
-                        color="success"
-                        onClick={handleAgregarSerial}
-                        disabled={serial === ""}
-                    >
-                        Cargar
-                    </Button>
-                </Paper>
+                <TextField
+                    required
+                    id="num_serie"
+                    label="Serial Number"
+                    name="num_serie"
+                    value={serial}
+                    onChange={handleSerial}
+                    onKeyDown={handleAgregarSerial}
+                    sx={{ margin: "1rem" }}
+                />
+
+                <Button
+                    variant="contained"
+                    endIcon={<SendIcon />}
+                    color="success"
+                    onClick={handleAgregarSerial}
+                    disabled={serial === ""}
+                >
+                    Cargar
+                </Button>
+            </Paper>
+
+            <Box
+                sx={{minHeight: "60vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}
+            >
 
                 <Typography component="h3" variant="h6" sx={{ m: 2 }}>
                     Cobranzas agregadas

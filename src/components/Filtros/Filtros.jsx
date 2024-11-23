@@ -1,6 +1,6 @@
 import SendIcon from '@mui/icons-material/Send';
 import { Button, Container, Grid, Paper, TextField, Autocomplete } from '@mui/material';
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -12,24 +12,6 @@ const Filtros = ({bo, type}) => {
 
     const { user, setPedido, pedido } = useContext(Context);
     const movimiento = ["Ingreso", "Egreso"];
-
-    useEffect(() => {
-
-        return () => {
-            setPedido({
-                state: false,
-                fecha: "", 
-                tipo_solicitud: null,
-                user: user?.nombre,
-                base_operativa: null, 
-                mov_ax: "",
-                comentario: ""
-            })
-            
-        }
-
-        
-    }, [setPedido, user.nombre])
 
     const handleInputChange = (name, value) => {
         setPedido({

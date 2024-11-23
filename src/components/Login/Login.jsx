@@ -12,7 +12,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { useContext, useEffect, useState } from 'react';
-import bg from "../../assets/images/mmmotif.svg"
+import bg from "../../../public/images/mmmotif.svg"
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../Context/Context';
 import { notifyError, notifySuccess } from '../Notificacion/Notificacion';
@@ -44,10 +44,7 @@ export default function Login() {
         event.preventDefault();
         const formValue = new FormData(event.currentTarget);
 
-        setLoading(true)
-
-        console.log(url);
-        
+        setLoading(true)        
 
         try {
             const response = await fetch(`${url}/auth/login`, {
@@ -109,7 +106,6 @@ export default function Login() {
                         backgroundColor: (t) =>
                         t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
-                        backgroundPosition: 'left',
                     }}
                 />
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -162,11 +158,6 @@ export default function Login() {
                                 Conectar
                             </Button>
                             <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        ¿Olvidaste tu contraseña?
-                                    </Link>
-                                </Grid>
                                 <Grid item>
                                     <Link onClick={() => navigate("/registrarse")} variant="body2" className='cursor-pointer'>
                                         {"¿No tenes cuenta? Registrate"}
